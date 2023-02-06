@@ -28,6 +28,14 @@ We will now provide an overview of the source code files containing results ment
 
 ## Section 3.4
 
+* Updated transition rules and `par'`: ['Lean/transition/transition.lean'](Lean/transition/transition.lean)
+* The proof from Example 3.4.1: ['Lean/mcrl2_sum/mcrl2_sum.lean'](Lean/mcrl2_sum/mcrl2_sum.lean)
+
 ## Section 4
+
+* The `Args` and `Act` types, and the definition of `mul`: ['Lean/ABP/Actions.lean'](Lean/ABP/Actions.lean)
+* The mutual recursion version of the ABP : ['Lean/ABP/ABP.lean'](Lean/ABP/ABP.lean)
+* The definition of `Step` and `Step.sizeof'`: ['Lean/ABP/ABP.lean'](Lean/ABP/ABP.lean)
+* The definition of `ABP` and `ABP_True`: ['Lean/ABP/ABP.lean'](Lean/ABP/ABP.lean)
 
 ## Section 5
