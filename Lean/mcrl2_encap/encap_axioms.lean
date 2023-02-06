@@ -4,7 +4,7 @@ import ..transition.encap
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 
 /- The quotient axioms-/

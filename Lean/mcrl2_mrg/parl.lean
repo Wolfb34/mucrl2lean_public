@@ -3,7 +3,7 @@ import ..mcrl2_basic.mcrl2_basic
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- Now we do the same for |_. -/
 inductive R_parl {x₁ x₂ y₁ y₂ : mcrl2 α} (R₁ R₂ : mcrl2 α → mcrl2 α → Prop) :

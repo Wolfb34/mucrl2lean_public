@@ -3,13 +3,13 @@ import .congruence
 
 
 variables {α : Type}
-variables [comm_semigroup_with_zero α]
+variables [comm_semigroup_with_zero_and_tau α]
 
 namespace mcrl2
 
 
 /- This is the base class of mrl2, with atoms, alternative and sequential composition and their axioms.-/
-class mcrl2_base (α : Type) (M : Type 1) [comm_semigroup_with_zero α] :=
+class mcrl2_base (α : Type) (M : Type 1) [comm_semigroup_with_zero_and_tau α] :=
   (atom : α → M)
   (alt : M → M → M)
   (seq : M → M → M)

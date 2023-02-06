@@ -3,7 +3,7 @@ import .transition.transition
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 
 /- Defining the notion of bisimulation for mcrl2 processes. -/
@@ -11,7 +11,7 @@ def is_bisimulation (R : mcrl2 α → mcrl2 α → Prop) : Prop :=
 (∀x y : mcrl2 α, (∀x' a, R x y → transition x a x' → ∃y', transition y a y' ∧ option.rel R x' y')) ∧ symmetric R
 
 #print is_bisimulation
-def bisim (α : Type) [comm_semigroup_with_zero α] : mcrl2 α → mcrl2 α → Prop
+def bisim (α : Type) [comm_semigroup_with_zero_and_tau α] : mcrl2 α → mcrl2 α → Prop
 | x y := ∃R : mcrl2 α → mcrl2 α → Prop, (R x y) ∧ is_bisimulation R
 
 /- Helper lemmas for proofs. -/
@@ -125,7 +125,7 @@ inductive R_comp {α : Type 1} (R₁ R₂ : α → α → Prop) :
 | stepl {a b} (h : ∃c, R₁ a c ∧ R₂ c b) : R_comp a b
 | stepr {a b} (h : ∃c, R₁ a c ∧ R₂ c b) : R_comp b a
 
-lemma comp_symmetric {R R' : mcrl2 α → mcrl2 α → Prop} :
+lemma comp_symmetric {α : Type 1} {R R' : α → α → Prop} :
 symmetric (R_comp R R') :=
 begin
   intros x y h,
@@ -228,4 +228,4 @@ lemma setoid_iff (a b : mcrl2 α) :
 a ≈ b ↔ bisim α a b :=
 by refl
 
-def mcrl2' (α : Type) [comm_semigroup_with_zero α] := quotient $ (@setoid_mcrl2 α _)
+def mcrl2' (α : Type) [comm_semigroup_with_zero_and_tau α] := quotient $ (@setoid_mcrl2 α _)

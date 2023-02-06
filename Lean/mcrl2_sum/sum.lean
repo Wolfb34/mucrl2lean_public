@@ -3,7 +3,7 @@ import ..mcrl2_encap.mcrl2_encap
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 variable {β : Type}
 
 /- The relation used to prove congruence of the summation operator.-/

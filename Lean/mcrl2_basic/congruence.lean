@@ -4,7 +4,7 @@ import ..transition.iff_lemmas
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- Here we prove the congruence rules for the operators. -/
 inductive R_alt {x₁ x₂ y₁ y₂ : mcrl2 α} (R₁ R₂ : mcrl2 α → mcrl2 α → Prop) :

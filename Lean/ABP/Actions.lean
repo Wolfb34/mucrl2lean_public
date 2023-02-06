@@ -35,7 +35,7 @@ inductive Act (α : Type) [decidable_eq α] : Type
 variable {α : Type}
 variable [decidable_eq α]
 
-/- Here we set up the comm_semigroup_with_zero for the actions of the ABP-/
+/- Here we set up the comm_semigroup_with_zero_and_tau for the actions of the ABP-/
 namespace Act
 
 def mul : Act α → Act α → Act α
@@ -66,7 +66,7 @@ begin
   cases x; cases y; cases z; unfold mul; split_ifs; refl
 end
 
-instance semigroup : comm_semigroup_with_zero (Act α) := {
+instance semigroup : comm_semigroup_with_zero_and_tau (Act α) := {
    zero := zero,
    mul := mul,
    mul_assoc := mul_assoc,

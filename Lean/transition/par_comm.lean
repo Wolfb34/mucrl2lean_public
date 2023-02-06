@@ -3,7 +3,7 @@ import .iff_lemmas
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- Next are equations for the 3 parallel operators ||, |_ and |. This also includes some equations on the deadlock operator. -/
 
@@ -11,8 +11,8 @@ variable [comm_semigroup_with_zero α]
 
 lemma transition.parl_seq_atom (a₁) (x : mcrl2 α) (x' : option (mcrl2 α)) (a₂)  :
 transition ((atom a₁) |_ x) a₂ x' ↔ transition ((atom a₁) ⬝ x) a₂ x' :=
-begin
-  simp [transition.parl_iff, transition.atom_iff, transition.seq_iff, and_rotate, exists_eq_left]
+begin 
+  simp [transition.parl_iff, transition.atom_iff, transition.seq_iff, ←and_assoc]
 end
 
 /- parl_seq  (((atom a ⬝ x) |_ y) = (atom a) ⬝ (x || y)) needs to be proved via bisimulation.-/
@@ -37,22 +37,16 @@ begin
     apply and.intro,
     { apply and.intro hx',
       rw ← hdab,
-      assumption},
+      apply and.intro,
+      assumption,
+      rw hdab,
+      exact comm_semigroup_with_zero_and_tau.tau_act a b},
     {assumption}},
   { intro h,
     cases h with h hdab,
     cases h with hx' hab,
-    repeat {apply and.intro},
-    assumption,
-    assumption,
-    { rw hdab,
-      assumption},
-    { intro h,
-      rw h at hab,
-      exact hab (zero_mul b)},
-    { intro h,
-      rw h at hab,
-      exact hab (mul_zero a)}}
+    simp [and_assoc],
+    exact ⟨hx', hdab, by rw hdab; exact hab.left, by exact is_action_mul hab⟩}
 end
 
 lemma transition.comm_fail (a b : α) (h₁ : a * b = 0)  (x' : option (mcrl2 α)) (d) :

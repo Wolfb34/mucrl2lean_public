@@ -3,7 +3,7 @@ import ..mcrl2_encap.mcrl2_encap
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 variable {β : Type}
 
 /- Lemmas used to reason on the quotient. Necessary for the proofs of the axioms. -/

@@ -4,7 +4,7 @@ import ..transition.sum
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 variable {β : Type}
 
 /- The proofs of the mcrl2 axioms for the quotient. -/

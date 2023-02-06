@@ -3,7 +3,7 @@ import ..mcrl2_mrg.mcrl2_mrg
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- The relation used to prove congruence of encapsulation-/
 inductive R_encap {x₁ y₁ : mcrl2 α} {A : set α} (R : mcrl2 α → mcrl2 α → Prop) :

@@ -6,12 +6,12 @@ import .parl
 import .par_axioms
 
 variables {α : Type}
-variables [comm_semigroup_with_zero α]
+variables [comm_semigroup_with_zero_and_tau α]
 
 namespace mcrl2
 
 /- Defining the class of mcrl2 with parallelism.-/
-class mcrl2_mrg (α : Type) (M : Type 1) [comm_semigroup_with_zero α] extends mcrl2_base α M :=
+class mcrl2_mrg (α : Type) (M : Type 1) [comm_semigroup_with_zero_and_tau α] extends mcrl2_base α M :=
   (parl : M → M → M)
   (par : M → M → M)
   (comm : M → M → M)

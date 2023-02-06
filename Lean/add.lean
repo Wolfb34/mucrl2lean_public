@@ -2,7 +2,7 @@ import .quotient
 
 open mcrl2
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- This relation is used to prove many of the axioms for the quotient.-/
 inductive R_add {x y : mcrl2 α} :

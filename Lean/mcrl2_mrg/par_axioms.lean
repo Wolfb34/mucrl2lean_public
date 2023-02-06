@@ -5,7 +5,7 @@ import ..add
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- This is where the axioms are proved for the quotient.-/
 
@@ -132,7 +132,7 @@ begin
         { exact R_add_par.lift_rel}},
       { apply exists.intro (par' h₂_y' h₂_x'),
         apply and.intro,
-        { change comm_semigroup_with_zero.mul h₂_a h₂_b with h₂_a * h₂_b,
+        { change comm_semigroup_with_zero_and_tau.mul h₂_a h₂_b with h₂_a * h₂_b,
           rw mul_comm at *, apply transition.par_comm; assumption},
         { exact R_add_par.lift_rel}}},
     { apply exists.intro x₁',

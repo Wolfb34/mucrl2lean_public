@@ -4,7 +4,7 @@ import ..transition.alt_seq
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 
 /- This relation is used to prove the seq_assoc rule for the mcrl2' quotient.-/

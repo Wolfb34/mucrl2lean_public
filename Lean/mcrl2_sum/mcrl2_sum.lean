@@ -3,12 +3,12 @@ import .sum
 import .quot_out
 
 variables {α : Type}
-variables [comm_semigroup_with_zero α]
+variables [comm_semigroup_with_zero_and_tau α]
 
 namespace mcrl2
 
 /- The class definition of mcrl2 with the summation operator. -/
-class mcrl2_sum (α : Type) (M : Type 1) [comm_semigroup_with_zero α] extends mcrl2_encap α M :=
+class mcrl2_sum (α : Type) (M : Type 1) [comm_semigroup_with_zero_and_tau α] extends mcrl2_encap α M :=
   (sum {β : Type} : set β → (β → M) → M)
   (sum_idem {β : Type} : ∀x (D : set β), (∃d, d ∈ D) → sum D (λa, x) = x)
   (sum_elem {β : Type} : ∀(D : set β) f d, d ∈ D → sum D f = alt (sum D f) (f d))

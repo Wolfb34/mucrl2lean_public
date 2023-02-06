@@ -7,7 +7,7 @@ open mcrl2
 
 variables {α : Type}
 
-variables [comm_semigroup_with_zero α]
+variables [comm_semigroup_with_zero_and_tau α]
 
 /- The seq' operator is used in the rule for x ⬝ y in order to identify the cases for x terminating and not terminating.-/
 def seq' : option (mcrl2 α) → mcrl2 α → option (mcrl2 α)
@@ -30,12 +30,43 @@ def par' : option (mcrl2 α) → option (mcrl2 α) → option (mcrl2 α)
 @[simp] lemma par'_none_coe (y : mcrl2 α) : par' none (y : option (mcrl2 α)) = y := rfl
 @[simp] lemma par'_coe_coe (x y : mcrl2 α) : par' (x : option (mcrl2 α)) y = x || y := rfl
 
+def is_action : α → Prop 
+| a := a ≠ 0 ∧ a ≠ tau
 
+lemma is_action_mul {a b : α} : is_action (a * b) → (is_action a ∧ is_action b) :=
+begin
+  intro h,
+  cases h,
+  apply and.intro,
+  { apply and.intro,
+    { intro h,
+      apply h_left,
+      rw h,
+      exact zero_mul b},
+    { intro h,
+      apply h_left,
+      rw h,
+      exact comm_semigroup_with_zero_and_tau.tau_mul b}},
+  { apply and.intro,
+    { intro h,
+      apply h_left,
+      rw h,
+      exact mul_zero a},
+    { intro h,
+      apply h_left,
+      rw h,
+      exact comm_semigroup_with_zero_and_tau.mul_tau a}}
+end
 
 /- The main definition of transitions. -/
 inductive transition
 : mcrl2 α → α → option (mcrl2 α) → Prop
-| atom {a} (h : a ≠ 0) : transition (atom a) a none
+| atom {a} (h₁ : is_action a) : transition (atom a) a none
+| tau : transition mcrl2.tau tau none
+| hide_in {x a z I} (h₁ : transition x a z) (h₂ : a ∈ I) :
+  transition (abstract I x) tau (abstract I <$> z)
+| hide_notin {x a z I} (h₁ : transition x a z) (h₂ : a ∉ I) :
+  transition (abstract I x) a (abstract I <$> z)
 | altl {x y z a} (h : transition x a z) :
   transition (x + y) a z
 | altr {x y z a} (h : transition y a z) :

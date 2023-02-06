@@ -7,17 +7,28 @@ import .transition
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- Here all the iff-lemmas are defined. These are used to lift transitions into Lean's logic.-/
-lemma transition.atom_iff (a b : α) (z) : transition (atom a) b z ↔ z = none ∧ (a ≠ 0) ∧ b = a :=
+lemma transition.atom_iff (a b : α) (z) : transition (atom a) b z ↔ z = none ∧ is_action a ∧ b = a :=
 begin
   split,
   { intro h,
     cases h,
-    exact ⟨rfl, h_h, rfl⟩ },
-  { rintro ⟨rfl, h, rfl⟩,
-    exact transition.atom h}
+    exact ⟨rfl, h_h₁, rfl⟩ },
+  { rintro ⟨rfl, h₁, rfl⟩,
+    exact transition.atom h₁}
+end
+
+lemma transition.tau_iff (a : α) (z) : transition mcrl2.tau a z ↔ (a = tau ∧ z = none) :=
+begin
+  split,
+  { intro h,
+    cases h,
+    exact ⟨rfl, rfl⟩},
+  { rintro ⟨ha, hz⟩,
+    simp [ha, hz],
+    apply transition.tau}
 end
 
 lemma transition.alt_iff (x y : mcrl2 α) (a z) : transition (x + y) a z ↔ transition x a z ∨ transition y a z :=
@@ -80,8 +91,10 @@ end
 lemma transition.no_zero {x : mcrl2 α} {z: option (mcrl2 α)} : ¬transition x 0 z :=
 begin
   intro h,
-  induction' h ; try { assumption },
-  repeat {contradiction}
+  induction' h ; try { assumption <|> contradiction },
+  exact h₁.left rfl,
+  exact comm_semigroup_with_zero_and_tau.tau_ne_zero induction_eq_1,
+  exact comm_semigroup_with_zero_and_tau.tau_ne_zero induction_eq_1,
 end
 
 lemma transition.encap_iff (x : mcrl2 α) (a : α) (y A) : transition (encap A x) a y ↔
@@ -124,4 +137,20 @@ begin
   { intro h,
     rcases h with ⟨a', ha', h⟩,
     apply transition.sum; assumption}
+end
+
+lemma transition.abs_iff (I : set α) (x a z) :
+transition (abstract I x) a z ↔ (
+  ((a = tau) ∧ (∃a', (a' ∈ I ) ∧ ∃z', z = abstract I <$> z' ∧  transition x a' z')) ∨ 
+  (a ∉ I ∧ ∃z', z = abstract I <$> z' ∧ transition x a z')) :=
+begin
+  split,
+  { intro h,
+    cases h,
+    { exact or.inl ⟨rfl, h_a, h_h₂, h_z, rfl, h_h₁⟩},
+    { exact or.inr ⟨h_h₂, h_z, rfl, h_h₁⟩}},
+  { rintro h,
+    rcases h with ⟨rfl, a', ha, z', rfl, hx⟩ | ⟨ha, z', rfl, hx⟩,
+    { apply transition.hide_in; assumption},
+    { apply transition.hide_notin; assumption}}
 end

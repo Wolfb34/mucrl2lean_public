@@ -3,7 +3,7 @@ import .iff_lemmas
 open mcrl2
 
 variable {α : Type}
-variable [comm_semigroup_with_zero α]
+variable [comm_semigroup_with_zero_and_tau α]
 
 /- Next are the equations on the encapsulation operator.-/
 lemma transition.encap_deadlock (A z) (a : α):
