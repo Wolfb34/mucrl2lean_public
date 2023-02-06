@@ -39,3 +39,15 @@ We will now provide an overview of the source code files containing results ment
 * The definition of `ABP` and `ABP_True`: ['Lean/ABP/ABP.lean'](Lean/ABP/ABP.lean)
 
 ## Section 5
+
+The content from this chapter can be found in the "hiding" branch in this repository.
+
+* The definition of `comm_semigroup_with_zero_and_tau`: ['Lean/mcrl2.lean'](Lean/mcrl2.lean)
+* The additions to the `mcrl2` type : ['Lean/mcrl2.lean'](Lean/mcrl2.lean)
+* The new iff-lemmas: ['Lean/transition/iff_lemmas.lean'](Lean/transition/iff_lemmas.lean)
+* The `hide_alt` lemma: ['Lean/hide.lean'](Lean/hide.lean)
+* The definition of `has_tau_sequence`: ['Lean/mcrl2_abs/tau_seq.lean'](Lean/mcrl2_abs/tau_seq.lean)
+* The definition of branching bisimilarity: ['Lean/mcrl2_abs/b_bisim.lean'](Lean/mcrl2_abs/b_bisim.lean)
+* The definition of rooted branching bisimilarity: ['Lean/mcrl2_abs/rb_bisim.lean'](Lean/mcrl2_abs/rb_bisim.lean)
+* The definition of the `mcrl2_abs` class: ['Lean/mcrl2_abs/mcrl2_abs.lean'](Lean/mcrl2_abs/mcrl2_abs.lean)
+* The definition of the rooted branching bisimilarity quotient: ['Lean/mcrl2_abs/mcrl2_abs.lean'](Lean/mcrl2_abs/mcrl2_abs.lean)
