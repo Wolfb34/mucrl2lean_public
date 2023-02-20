@@ -24,7 +24,7 @@ We will now provide an overview of the source code files containing results ment
 * The definition of the `mcrl2_base` class: ['Lean/mcrl2_base/mcrl2_base.lean'](Lean/mcrl2_base/mcrl2_base.lean)
 * The `R_add` relation and its lemmas: ['Lean/add.lean'](Lean/add.lean)
 * The `mcrl2.alt_dist` and `mcrl2.seq_assoc` lemmas: ['Lean/mcrl2_basic/basic_axioms.lean'](Lean/mcrl2_basic/basic_axioms.lean)
-* The base instance for μCRL: ['Lean/mcrl2_basic/mcrl2_basic.lean']
+* The base instance for μCRL: ['Lean/mcrl2_basic/mcrl2_basic.lean'](Lean/mcrl2_basic/mcrl2_basic.lean)
 
 ## Section 3.4
 

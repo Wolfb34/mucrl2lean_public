@@ -228,4 +228,4 @@ lemma setoid_iff (a b : mcrl2 α) :
 a ≈ b ↔ bisim α a b :=
 by refl
 
-def mcrl2' (α : Type) [comm_semigroup_with_zero α] := quotient $ (@setoid_mcrl2 α _)
+def mcrl2' (α : Type) [comm_semigroup_with_zero α] := quotient (@setoid_mcrl2 α _)

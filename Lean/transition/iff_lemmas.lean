@@ -1,3 +1,4 @@
+/- This file defines all the iff-lemmas. These are used to lift transitions into Lean's logic.-/
 import tactic
 import tactic.induction
 import data.option.basic
@@ -9,7 +10,7 @@ open mcrl2
 variable {α : Type}
 variable [comm_semigroup_with_zero α]
 
-/- Here all the iff-lemmas are defined. These are used to lift transitions into Lean's logic.-/
+
 lemma transition.atom_iff (a b : α) (z) : transition (atom a) b z ↔ z = none ∧ (a ≠ 0) ∧ b = a :=
 begin
   split,

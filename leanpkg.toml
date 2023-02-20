@@ -1,0 +1,8 @@
+[package]
+name = "Master Thesis"
+version = "0.1"
+lean_version = "leanprover-community/lean:3.48.0"
+path = "src"
+
+[dependencies]
+mathlib = {git = "https://github.com/leanprover-community/mathlib", rev = "e1452ef24e117a92df20b6d45f80b53cabe5a177"}

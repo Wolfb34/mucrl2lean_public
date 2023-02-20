@@ -1,10 +1,11 @@
+/- This file defined the R_add relation, used to prove many of the axioms for the quotient.-/
+
 import .quotient
 
 open mcrl2
 variable {α : Type}
 variable [comm_semigroup_with_zero α]
 
-/- This relation is used to prove many of the axioms for the quotient.-/
 inductive R_add {x y : mcrl2 α} :
 mcrl2 α → mcrl2 α → Prop
 | basel : R_add x y

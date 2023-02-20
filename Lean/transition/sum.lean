@@ -1,3 +1,4 @@
+/- This file includes the proofs for the axioms for the summation operator.-/
 import .iff_lemmas
 
 open mcrl2
@@ -5,7 +6,6 @@ open mcrl2
 variable {α : Type}
 variable [comm_semigroup_with_zero α]
 
-/- Now we start on axioms for the summation operator.-/
 variable {β : Type}
 
 /- Note the presence of the hypothesis h here. -/

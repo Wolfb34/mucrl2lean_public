@@ -1,3 +1,4 @@
+/- This file includes proofs of the axioms for the 3 parallel operators ||, |_ and |. This also includes some axioms for the deadlock operator. -/
 import .iff_lemmas
 
 open mcrl2
@@ -5,7 +6,6 @@ open mcrl2
 variable {α : Type}
 variable [comm_semigroup_with_zero α]
 
-/- Next are equations for the 3 parallel operators ||, |_ and |. This also includes some equations on the deadlock operator. -/
 
 /- parl_def ((x || y) = x |_ y + y |_ x + x | y) needs to be proved via bisimulation-/
 

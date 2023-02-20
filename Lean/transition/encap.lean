@@ -1,3 +1,4 @@
+/- This file includes the proofs of the axioms for the encapsulation operator.-/
 import .iff_lemmas
 
 open mcrl2
@@ -5,7 +6,6 @@ open mcrl2
 variable {α : Type}
 variable [comm_semigroup_with_zero α]
 
-/- Next are the equations on the encapsulation operator.-/
 lemma transition.encap_deadlock (A z) (a : α):
 transition (encap A (δ : mcrl2 α)) a z ↔ transition (δ : mcrl2 α) a z :=
 begin

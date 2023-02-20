@@ -1,3 +1,4 @@
+/- This file includes the proofs of the axioms for the alternative and sequential composition. -/
 import .iff_lemmas
 
 open mcrl2
@@ -5,7 +6,7 @@ open mcrl2
 variable {α : Type}
 variable [comm_semigroup_with_zero α]
 
-/- Start of proving the mucrl equations, starting with axioms on the alternative and sequential composition. -/
+
 
 lemma transition.alt_comm (x y: mcrl2 α) (x' : option (mcrl2 α)) (a) :
   transition (x + y) a x' ↔ transition (y + x) a x' :=

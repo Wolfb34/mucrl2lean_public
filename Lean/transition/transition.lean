@@ -31,7 +31,6 @@ def par' : option (mcrl2 α) → option (mcrl2 α) → option (mcrl2 α)
 @[simp] lemma par'_coe_coe (x y : mcrl2 α) : par' (x : option (mcrl2 α)) y = x || y := rfl
 
 
-
 /- The main definition of transitions. -/
 inductive transition
 : mcrl2 α → α → option (mcrl2 α) → Prop
