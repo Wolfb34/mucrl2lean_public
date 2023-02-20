@@ -11,10 +11,11 @@ element, and `0` is left and right absorbing. -/
 @[protect_proj, ancestor semigroup_with_zero comm_semigroup]
 class comm_semigroup_with_zero_and_tau (S₀ : Type*) extends semigroup_with_zero S₀, comm_semigroup S₀ :=
 (tau : S₀)
-(tau_ne_zero : tau ≠ 0)
+-- (tau_ne_zero : tau ≠ 0)
 (tau_mul : ∀a : S₀, tau * a = 0)
 (mul_tau : ∀a : S₀, a * tau = 0)
 (tau_act : ∀a b: S₀, a * b ≠ tau)
+
 
 
 /- The inductive type mcrl2 and all its constructors. Needs to be of Type 1 because of the sum operator. -/
@@ -43,3 +44,13 @@ infix (name:=comm)` ∣ `:90 := mcrl2.comm
 notation `δ` := mcrl2.deadlock
 
 export comm_semigroup_with_zero_and_tau (tau)
+
+lemma tau_ne_zero (α : Type) [comm_semigroup_with_zero_and_tau α] :
+(tau : α ) ≠ (0 : α) :=
+begin
+  intro h,
+  apply _inst_1.tau_act,
+  rw h,
+  apply mul_zero,
+  use 0,
+end

@@ -11,9 +11,9 @@ namespace mcrl2
  iseqv := 
   begin 
     repeat {apply and.intro},
-    { apply rb_bisim_reflexive},
-    { apply rb_bisim_symmetric},
-    { apply rb_bisim_transitive}
+    { apply rb_reflexive},
+    { apply rb_symmetric},
+    { apply rb_transitive}
   end
 }
 
@@ -30,6 +30,14 @@ class mcrl2_abs (α : Type) (M : Type 1) [comm_semigroup_with_zero_and_tau α] e
 (hide_alt : ∀I x y, abs I (alt x y) = alt (abs I x) (abs I y))
 (hide_seq : ∀I x y, abs I (seq x y) = seq (abs I x) (abs I y))
 (hide_sum: ∀I D : set α, ∀f, abs I (sum D f) = sum D (λa, abs I (f a)))
+
+
+lemma bisim.abs (x₁ x₂ : mcrl2 α) (I) (h : x₁ ≈ x₂) :
+mcrl2.abstract I x₁ ≈ mcrl2.abstract I x₂ :=
+begin
+  rcases h with ⟨R, hR, R_bisim⟩,
+  
+end
 
 
 

@@ -11,7 +11,7 @@ def rb_bisim (α : Type) [comm_semigroup_with_zero_and_tau α] : (mcrl2 α) → 
 | x y := ∃R : (mcrl2 α → mcrl2 α → Prop), R x y ∧ is_rb_bisimulation R
 
 #check eq
-lemma rb_bisim_reflexive : reflexive (rb_bisim α) :=
+lemma rb_reflexive : reflexive (rb_bisim α) :=
 begin
   intro x,
   apply exists.intro (λa b, a = b),
@@ -22,11 +22,11 @@ begin
     apply exists.intro v',
     apply and.intro,
     { rw ←hR, assumption},
-    { exact (b_bisim_reflexive _)},
+    { exact (b_reflexive _)},
     { intros u w h; rw h; refl}}
 end
 
-lemma rb_bisim_symmetric : symmetric (rb_bisim α) :=
+lemma rb_symmetric : symmetric (rb_bisim α) :=
 begin
   intros x y h,
   rcases h with ⟨R, hRx, R_bisim, R_symm⟩,
@@ -48,10 +48,31 @@ begin
     { rcases hR_h with ⟨w, hw, hw'⟩,
       specialize R_bisim x w hw x' a hx,
       rcases R_bisim with ⟨w', hw'a, hx'w'⟩,
-      }
+      specialize R'_bisim w y hw' w' a hw'a,
+      rcases R'_bisim with ⟨y', hy₁, hy₂⟩,
+      use y',
+      apply and.intro hy₁,
+      exact b_transitive hx'w' hy₂},
+    { rcases hR_h with ⟨w, hw, hw'⟩,
+      specialize R'_bisim x w (R'_symm hw') x' a hx,
+      rcases R'_bisim with ⟨w', hw'a, hx'w'⟩,
+      specialize R_bisim w y (R_symm hw) w' a hw'a,
+      rcases R_bisim with ⟨y', hy₁, hy₂⟩,
+      use y',
+      apply and.intro hy₁,
+      exact b_transitive hx'w' hy₂}
     },
-  { exact comp_rb_symmetric hr hr'}
+  { exact comp_symmetric}
 end
 
-lemma rb_bisim_transitive : transitive (rb_bisim α) :=
-sorry
+lemma rb_transitive : transitive (rb_bisim α) :=
+begin
+  intros x y z hxy hyz,
+  rcases hxy with ⟨R, hR, R_bisim⟩,
+  rcases hyz with ⟨R', hR', R'_bisim⟩,
+  use R_comp R R',
+  apply and.intro,
+  { apply R_comp.stepl,
+    exact ⟨y, hR, hR'⟩},
+    exact comp_rb_bisim R_bisim R'_bisim  
+end

@@ -2,12 +2,12 @@ import .encap
 import .encap_axioms
 
 variables {α : Type}
-variables [comm_semigroup_with_zero α]
+variables [comm_semigroup_with_zero_and_tau α]
 
 namespace mcrl2
 
 /- Defining the class of mcrl2 with encapsulation.-/
-class mcrl2_encap (α : Type) (M : Type 1) [comm_semigroup_with_zero α] extends mcrl2_mrg α M :=
+class mcrl2_encap (α : Type) (M : Type 1) [comm_semigroup_with_zero_and_tau α] extends mcrl2_mrg α M :=
   (encap : set α → M → M)
   (dead_encap : ∀A, encap A deadlock = deadlock)
   (encap_pass : ∀a A, a ∉ A → encap A (atom a) = atom a)
